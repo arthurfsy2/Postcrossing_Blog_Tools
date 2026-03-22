@@ -1,7 +1,7 @@
 ---
-title: 明信片展示墙（寄出：211）
+title: 明信片展示墙（寄出：212）
 icon: address-card
-date: 2026-03-20
+date: 2026-03-22
 category:
   - Arthur
 tag:
@@ -147,7 +147,16 @@ const option = {
 
 :::
 
-### 2026(8)
+### 2026(9)
+
+[CN-4222993](https://www.postcrossing.com/postcards/CN-4222993) 
+>寄往 [suegathman](https://www.postcrossing.com/user/suegathman) 🇺🇸
+> 📤 [China](https://www.bing.com/maps/?cp=22.56004~114.23477&lvl=12.0&setlang=zh-Hans) 2026/01/29 13:58 (当地)
+> 📥 [U.S.A.](https://www.bing.com/maps/?cp=33.14337~-117.16614&lvl=12.0&setlang=zh-Hans) 2026/03/21 22:23 (当地)
+ 📏 11,766 | ⏱ 52
+
+
+![](https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_map_generator@main/gallery/picture/vr5p9um59taoa9avammvsb9xkc6k2krh.jpg)
 
 [CN-4222994](https://www.postcrossing.com/postcards/CN-4222994) 
 >寄往 [zero_juice_if](https://www.postcrossing.com/user/zero_juice_if) 🇹🇼
