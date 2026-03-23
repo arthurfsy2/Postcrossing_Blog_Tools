@@ -126,9 +126,23 @@ jobs:
         run: |
           # 创建目标目录
           mkdir -p "blog-repo/${{ env.blog_path }}"
-          # 只复制 gallery 目录下的.md 文件
-          cp ./gallery/*.md "blog-repo/${{ env.blog_path }}/"
-          echo "Markdown 文件已复制到博客仓库"
+          mkdir -p "blog-repo/${{ env.blog_path }}/各年详情"
+          echo "📁 复制以下 Markdown 文件到博客仓库："
+          # 复制 gallery 目录下的.md 文件
+          for file in ./gallery/*.md; do
+            if [ -f "$file" ]; then
+              cp "$file" "blog-repo/${{ env.blog_path }}/"
+              echo "  ✅ $(basename "$file")"
+            fi
+          done
+          # 复制 gallery/各年详情 目录下的.md 文件
+          for file in ./gallery/各年详情/*.md; do
+            if [ -f "$file" ]; then
+              cp "$file" "blog-repo/${{ env.blog_path }}/各年详情/"
+              echo "  ✅ 各年详情/$(basename "$file")"
+            fi
+          done
+          echo "📋 Markdown 文件复制完成"
 
       - name: 检查是否有文件变更
         id: check_changes
