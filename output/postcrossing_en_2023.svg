@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800">
+<style>@font-face{font-family:'Noto Serif TC';font-weight:bold;font-style:normal;src:url("data:application/font-woff;charset=utf-8;base64,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")format("woff");}</style>
+<style>text{font-family:'Noto Serif TC';font-weight:bold;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(132,514)" font-size="419" style="fill:rgb(86, 198, 103)">Thank</text>
+<text transform="translate(1,793)" font-size="335" style="fill:rgb(45, 113, 142)">card</text>
+<text transform="translate(729,722)" font-size="195" style="fill:rgb(46, 111, 142)">postcard</text>
+<text transform="translate(629,193)" font-size="161" style="fill:rgb(56, 89, 140)">family</text>
+<text transform="translate(194,135)" font-size="161" style="fill:rgb(122, 209, 81)">love</text>
+<text transform="translate(1155,89)" font-size="101" style="fill:rgb(42, 120, 142)">Greeting</text>
+<text transform="translate(88,593)" font-size="97" style="fill:rgb(119, 209, 83)">Arthur</text>
+<text transform="translate(83,454) rotate(-90)" font-size="93" style="fill:rgb(31, 161, 135)">much</text>
+<text transform="translate(1358,267)" font-size="93" style="fill:rgb(72, 28, 110)">best</text>
+<text transform="translate(964,795)" font-size="85" style="fill:rgb(64, 189, 114)">Hello Arthur</text>
+<text transform="translate(1292,573)" font-size="80" style="fill:rgb(52, 96, 141)">Many</text>
+<text transform="translate(480,587)" font-size="80" style="fill:rgb(112, 207, 87)">nice</text>
+<text transform="translate(767,583)" font-size="80" style="fill:rgb(129, 211, 77)">stamp</text>
+<text transform="translate(719,279)" font-size="80" style="fill:rgb(31, 161, 136)">wish</text>
+<text transform="translate(758,69)" font-size="80" style="fill:rgb(52, 97, 141)">good</text>
+<text transform="translate(1156,161)" font-size="72" style="fill:rgb(186, 222, 40)">wonderful</text>
+<text transform="translate(1019,567)" font-size="59" style="fill:rgb(40, 174, 128)">daughter</text>
+<text transform="translate(593,281) rotate(-90)" font-size="59" style="fill:rgb(39, 127, 142)">beautiful</text>
+<text transform="translate(118,439)" font-size="59" style="fill:rgb(80, 196, 106)">Hi</text>
+<text transform="translate(129,493)" font-size="59" style="fill:rgb(53, 94, 141)">live</text>
+<text transform="translate(322,370)" font-size="55" style="fill:rgb(236, 229, 27)">great</text>
+<text transform="translate(41,46)" font-size="55" style="fill:rgb(72, 41, 121)">hope</text>
+<text transform="translate(61,155)" font-size="55" style="fill:rgb(160, 218, 57)">city</text>
+<text transform="translate(911,269)" font-size="37" style="fill:rgb(170, 220, 50)">Happy Postcrossing</text>
+<text transform="translate(277,162)" font-size="34" style="fill:rgb(39, 126, 142)">name</text>
+<text transform="translate(905,222)" font-size="34" style="fill:rgb(71, 13, 96)">Happy</text>
+<text transform="translate(1487,353)" font-size="34" style="fill:rgb(41, 123, 142)">Dear</text>
+<text transform="translate(316,40)" font-size="34" style="fill:rgb(205, 225, 29)">coffee</text>
+<text transform="translate(176,281)" font-size="34" style="fill:rgb(229, 228, 25)">day</text>
+<text transform="translate(1152,229)" font-size="34" style="fill:rgb(41, 122, 142)">look</text>
+<text transform="translate(369,191)" font-size="34" style="fill:rgb(96, 202, 96)">sea</text>
+<text transform="translate(601,54)" font-size="31" style="fill:rgb(72, 27, 109)">Hello</text>
+<text transform="translate(132,525)" font-size="31" style="fill:rgb(34, 141, 141)">life</text>
+<text transform="translate(1081,53)" font-size="31" style="fill:rgb(36, 135, 142)">time</text>
+<text transform="translate(891,765)" font-size="31" style="fill:rgb(129, 211, 77)">year</text>
+<text transform="translate(604,267)" font-size="28" style="fill:rgb(31, 152, 139)">Russia</text>
+<text transform="translate(381,477)" font-size="28" style="fill:rgb(178, 221, 45)">stay</text>
+<text transform="translate(1434,376)" font-size="28" style="fill:rgb(147, 215, 65)">received</text>
+<text transform="translate(93,353)" font-size="28" style="fill:rgb(35, 138, 141)">lovely</text>
+<text transform="translate(1235,463) rotate(-90)" font-size="28" style="fill:rgb(86, 198, 103)">one</text>
+<text transform="translate(423,27)" font-size="28" style="fill:rgb(84, 197, 104)">reading</text>
+<text transform="translate(964,32)" font-size="28" style="fill:rgb(51, 98, 141)">mailbox</text>
+<text transform="translate(673,23)" font-size="28" style="fill:rgb(49, 103, 142)">cute</text>
+<text transform="translate(346,328)" font-size="28" style="fill:rgb(216, 226, 25)">really</text>
+<text transform="translate(1159,185)" font-size="28" style="fill:rgb(192, 223, 37)">New</text>
+<text transform="translate(1202,296)" font-size="28" style="fill:rgb(39, 126, 142)">old</text>
+<text transform="translate(663,221)" font-size="28" style="fill:rgb(78, 195, 107)">small</text>
+<text transform="translate(94,264)" font-size="28" style="fill:rgb(34, 139, 141)">Ik</text>
+<text transform="translate(388,538)" font-size="28" style="fill:rgb(69, 4, 87)">Take care</text>
+<text transform="translate(125,736)" font-size="24" style="fill:rgb(72, 35, 116)">pretty</text>
+<text transform="translate(175,693)" font-size="24" style="fill:rgb(208, 225, 28)">work</text>
+<text transform="translate(56,85)" font-size="24" style="fill:rgb(53, 94, 141)">Postcrossing</text>
+<text transform="translate(1240,593)" font-size="24" style="fill:rgb(47, 108, 142)">read</text>
+<text transform="translate(454,167)" font-size="24" style="fill:rgb(49, 103, 142)">well</text>
+<text transform="translate(1506,301)" font-size="24" style="fill:rgb(44, 177, 126)">peace</text>
+<text transform="translate(111,198)" font-size="24" style="fill:rgb(70, 52, 128)">health</text>
+<text transform="translate(327,458)" font-size="24" style="fill:rgb(45, 113, 142)">lot</text>
+<text transform="translate(1490,420)" font-size="24" style="fill:rgb(44, 177, 126)">amazing</text>
+<text transform="translate(1057,78)" font-size="24" style="fill:rgb(71, 17, 100)">friend</text>
+<text transform="translate(1392,189)" font-size="24" style="fill:rgb(34, 139, 141)">Wishing</text>
+<text transform="translate(1507,446)" font-size="24" style="fill:rgb(72, 41, 121)">Today</text>
+<text transform="translate(1537,162)" font-size="24" style="fill:rgb(210, 226, 27)">full</text>
+<text transform="translate(320,404)" font-size="24" style="fill:rgb(68, 2, 86)">healthy</text>
+<text transform="translate(786,753)" font-size="24" style="fill:rgb(49, 104, 142)">regards</text>
+<text transform="translate(357,433)" font-size="24" style="fill:rgb(57, 85, 140)">little</text>
+<text transform="translate(766,798)" font-size="24" style="fill:rgb(124, 210, 80)">world</text>
+<text transform="translate(1078,423) rotate(-90)" font-size="24" style="fill:rgb(53, 183, 121)">now</text>
+<text transform="translate(959,59)" font-size="24" style="fill:rgb(226, 228, 24)">autumn</text>
+<text transform="translate(724,49)" font-size="24" style="fill:rgb(72, 35, 116)">far</text>
+<text transform="translate(1542,757)" font-size="24" style="fill:rgb(40, 124, 142)">cat</text>
+<text transform="translate(940,351)" font-size="24" style="fill:rgb(229, 228, 25)">Art</text>
+<text transform="translate(522,709)" font-size="20" style="fill:rgb(31, 148, 140)">m</text>
+<text transform="translate(1518,320)" font-size="20" style="fill:rgb(34, 167, 133)">Ivanka</text>
+<text transform="translate(98,102)" font-size="20" style="fill:rgb(105, 205, 91)">dreams</text>
+<text transform="translate(1433,393)" font-size="20" style="fill:rgb(60, 80, 139)">message</text>
+<text transform="translate(183,154)" font-size="20" style="fill:rgb(61, 188, 116)">starting</text>
+<text transform="translate(416,592)" font-size="20" style="fill:rgb(205, 225, 29)">Warm</text>
+<text transform="translate(1073,479)" font-size="20" style="fill:rgb(70, 48, 126)">post</text>
+<text transform="translate(1578,558)" font-size="20" style="fill:rgb(33, 143, 141)">l</text>
+<text transform="translate(51,500)" font-size="20" style="fill:rgb(137, 213, 72)">got</text>
+<text transform="translate(232,191)" font-size="20" style="fill:rgb(101, 203, 94)">happiness</text>
+<text transform="translate(639,290)" font-size="20" style="fill:rgb(202, 225, 31)">books</text>
+<text transform="translate(378,610)" font-size="20" style="fill:rgb(38, 130, 142)">think</text>
+<text transform="translate(382,531) rotate(-90)" font-size="20" style="fill:rgb(53, 95, 141)">sent</text>
+<text transform="translate(1428,707)" font-size="20" style="fill:rgb(59, 187, 117)">walk</text>
+<text transform="translate(608,92)" font-size="20" style="fill:rgb(33, 166, 133)">will</text>
+<text transform="translate(1451,439)" font-size="20" style="fill:rgb(48, 105, 142)">cup</text>
+<text transform="translate(1483,487)" font-size="20" style="fill:rgb(63, 188, 115)">drink</text>
+<text transform="translate(1268,472) rotate(-90)" font-size="20" style="fill:rgb(216, 226, 25)">congratulation</text>
+<text transform="translate(1564,527) rotate(-90)" font-size="20" style="fill:rgb(71, 13, 96)">wishes</text>
+<text transform="translate(307,258)" font-size="20" style="fill:rgb(33, 144, 141)">Chris</text>
+<text transform="translate(883,600)" font-size="20" style="fill:rgb(70, 50, 126)">become</text>
+<text transform="translate(92,388)" font-size="20" style="fill:rgb(53, 94, 141)">afternoon</text>
+<text transform="translate(173,366)" font-size="20" style="fill:rgb(58, 186, 118)">second</text>
+<text transform="translate(800,452)" font-size="20" style="fill:rgb(72, 20, 103)">May</text>
+<text transform="translate(1526,27)" font-size="20" style="fill:rgb(37, 172, 130)">colors</text>
+<text transform="translate(540,482)" font-size="20" style="fill:rgb(40, 124, 142)">story</text>
+<text transform="translate(918,465)" font-size="20" style="fill:rgb(72, 31, 112)">Enjoy</text>
+<text transform="translate(137,311)" font-size="20" style="fill:rgb(59, 82, 139)">boys</text>
+<text transform="translate(498,759)" font-size="20" style="fill:rgb(70, 50, 126)">kind</text>
+</svg>

@@ -1,39 +1,31 @@
-由Gemini gemini
-gemini flash
-flash lite
-lite preview
-preview 识别
+Thank
 postcard
 card
 Hello Arthur
 much
-Thank
 stamp
-love
-由imap_tools提取 Hello
-hope
-Arthur Thank
 Greeting
+love
+hope
+Hello
+Arthur Thank
 best
-识别 Hello
 live
 wish
-Happy Postcrossing
+nice
 Best wishes
+Happy Postcrossing
 day
 name
-nice
 time
 great
-由imap_tools提取
 beautiful
 really
+many
 family
 year
 daughter
 Germany
-由imap_tools提取 Thank
-many
 Happy
 cute
 one
@@ -41,8 +33,8 @@ good
 enjoy
 lot
 Hi Arthur
-由imap_tools提取 Hi
 China
+wonderful
 city
 well
 Xiaoxiao
@@ -51,6 +43,7 @@ Dear Arthur
 send
 world
 today
+Hi
 May
 work
 country
@@ -65,8 +58,6 @@ Arthur Greetings
 Russia
 friend
 got
-wonderful
-识别 Hi
 postcrossing
 years old
 little
@@ -75,7 +66,6 @@ lovely
 USA
 cycling
 bike
-由imap_tools提取 Dear
 wonderful postcard
 lovely postcard
 know
@@ -98,3 +88,13 @@ long
 sending
 amazing
 trip
+received
+reading
+north
+small
+Cheers
+Chinese
+mailbox
+ride
+always
+south
