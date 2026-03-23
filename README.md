@@ -4,8 +4,8 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/arthurfsy2/Postcrossing_map_generator?style=social)](https://github.com/arthurfsy2/Postcrossing_map_generator/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/arthurfsy2/Postcrossing_map_generator?style=social)](https://github.com/arthurfsy2/Postcrossing_map_generator/network)
+[![GitHub Stars](https://img.shields.io/github/stars/arthurfsy2/Postcrossing_Blog_Tools?style=social)](https://github.com/arthurfsy2/Postcrossing_Blog_Tools/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/arthurfsy2/Postcrossing_Blog_Tools?style=social)](https://github.com/arthurfsy2/Postcrossing_Blog_Tools/network)
 
 **🌍 一个可以输入 postcrossing 账号、密码，即可获取展示墙数据、生成个性化地图、各种数据统计的脚本（数据收集癖患者的福音），是官网的 plus 加强版+美化版。**
 
@@ -304,9 +304,9 @@ on:
   如本仓库的 json 链接：
 
 ```
-https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_map_generator@main/output/calendar.json
-  https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_map_generator@main/output/stats.json
-  https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_map_generator@main/output/month.json
+https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_Blog_Tools@main/output/calendar.json
+  https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_Blog_Tools@main/output/stats.json
+  https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_Blog_Tools@main/output/month.json
 ```
 
 ### 推荐 2.gitmirror
@@ -314,11 +314,11 @@ https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_map_generator@main/output/ca
 可直接将 `raw.githubusercontent.com/XXX`换成 `raw.gitmirror.com/XXX`，即可实现免费 CDN
 
 ```
-https://raw.gitmirror.com/arthurfsy2/Postcrossing_map_generator/main/output/calendar.json
+https://raw.gitmirror.com/arthurfsy2/Postcrossing_Blog_Tools/main/output/calendar.json
 
-https://raw.gitmirror.com/arthurfsy2/Postcrossing_map_generator/main/output/stats.json
+https://raw.gitmirror.com/arthurfsy2/Postcrossing_Blog_Tools/main/output/stats.json
 
-https://raw.gitmirror.com/arthurfsy2/Postcrossing_map_generator/main/output/month.json
+https://raw.gitmirror.com/arthurfsy2/Postcrossing_Blog_Tools/main/output/month.json
 ```
 
 上述 2 种方法获取的 json 文件为直链，可以通过 python 或 javascript 直接 http 的 get 请求，直接获取到数据。
