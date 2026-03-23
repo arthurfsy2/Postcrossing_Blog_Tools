@@ -128,6 +128,12 @@ jobs:
           mkdir -p "blog-repo/${{ env.blog_path }}"
           mkdir -p "blog-repo/${{ env.blog_path }}/各年详情"
           echo "📁 复制以下 Markdown 文件到博客仓库："
+          echo "🔍 当前工作目录: $(pwd)"
+          echo "🔍 gallery 目录内容:"
+          ls -la ./gallery/ || echo "  ⚠️ 无法列出 gallery 目录"
+          echo "🔍 gallery/各年详情 目录内容:"
+          ls -la ./gallery/各年详情/ || echo "  ⚠️ 无法列出 各年详情 目录"
+          
           # 复制 gallery 目录下的.md 文件
           for file in ./gallery/*.md; do
             if [ -f "$file" ]; then
@@ -135,14 +141,23 @@ jobs:
               echo "  ✅ $(basename "$file")"
             fi
           done
+          
           # 复制 gallery/各年详情 目录下的.md 文件
-          for file in ./gallery/各年详情/*.md; do
-            if [ -f "$file" ]; then
-              cp "$file" "blog-repo/${{ env.blog_path }}/各年详情/"
-              echo "  ✅ 各年详情/$(basename "$file")"
-            fi
-          done
+          if [ -d "./gallery/各年详情" ]; then
+            for file in ./gallery/各年详情/*.md; do
+              if [ -f "$file" ]; then
+                cp "$file" "blog-repo/${{ env.blog_path }}/各年详情/"
+                echo "  ✅ 各年详情/$(basename "$file")"
+              fi
+            done
+          else
+            echo "  ⚠️ gallery/各年详情 目录不存在"
+          fi
+          
           echo "📋 Markdown 文件复制完成"
+          echo "🔍 博客仓库目标目录内容:"
+          ls -la "blog-repo/${{ env.blog_path }}/" || echo "  ⚠️ 无法列出目标目录"
+          ls -la "blog-repo/${{ env.blog_path }}/各年详情/" || echo "  ⚠️ 无法列出各年详情目标目录"
 
       - name: 检查是否有文件变更
         id: check_changes
