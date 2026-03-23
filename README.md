@@ -1,20 +1,47 @@
-**一个可以输入 postcrossing 账号、密码，即可获取展示墙数据、生成个性化地图、各种数据统计的脚本（数据收集癖患者的福音），是官网的 plus 加强版+美化版。**
+<div align="center">
 
-个人地图展示：
-[收发标记图](https://postcrossing.4a1801.life/cluster_map.html)
-[聚类图](https://postcrossing.4a1801.life/map.html)
+# 📮 Postcrossing Blog Tools
 
-个人博客效果展示：
-[Postcrossing](https://blog.4a1801.life/Arthur/postcrossing/信息汇总.html)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/arthurfsy2/Postcrossing_map_generator?style=social)](https://github.com/arthurfsy2/Postcrossing_map_generator/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/arthurfsy2/Postcrossing_map_generator?style=social)](https://github.com/arthurfsy2/Postcrossing_map_generator/network)
+
+**🌍 一个可以输入 postcrossing 账号、密码，即可获取展示墙数据、生成个性化地图、各种数据统计的脚本（数据收集癖患者的福音），是官网的 plus 加强版+美化版。**
+
+[📊 在线演示](https://postcrossing.4a1801.life/) • [📖 使用文档](#一-部署步骤本地模式) • [🚀 快速开始](#环境要求)
+
+</div>
+
+---
+
+## 🎯 效果展示
+
+| 🗺️ 个人地图 | 📊 数据统计 | 📬 博客展示 |
+|:---:|:---:|:---:|
+| [收发标记图](https://postcrossing.4a1801.life/cluster_map.html) | [聚类图](https://postcrossing.4a1801.life/map.html) | [信息汇总](https://blog.4a1801.life/Arthur/postcrossing/信息汇总.html) |
+
+## ✨ 核心功能
+
+| 功能 | 描述 | 状态 |
+|------|------|:----:|
+| 🖼️ 展示墙 | 抓取官网 gallery 数据，生成带 frontmatter 的 md 文件 | ✅ |
+| 🗺️ 个性化地图 | ClusterMap + Map 双地图展示，GeoJSON 标记足迹 | ✅ |
+| 📊 信息汇总 | 基本信息、图片墙、地图、统计图表、明信片故事 | ✅ |
+| 📅 各年详情 | 按年份拆分展示，解决大文件构建问题 | 🆕 |
+| ☁️ 词云统计 | 总词云 + 年度词云，展示内容特点 | ✅ |
+| 🤖 AI 识别 | Gemini AI 自动识别明信片背面文字 | 🆕 |
+| 📧 邮件抓取 | 自动抓取邮箱回复邮件内容 | ✅ |
+| 🔄 增量更新 | 数据库保存，只抓取更新部分 | ✅ |
 
 # 前言
 
 本项目特点：
 
 1. 展示墙
-   抓取官网的 `/gallery`下的 4 个模块，下载 gallery 对应的图片，并生成包含 fronttage 的.md 文件，以便你放入到**vuepress**当中使用
+   抓取官网的 `/gallery`下的 4 个模块，下载 gallery 对应的图片，并生成包含 frontmatter 的.md 文件，以便你放入到**vuepress**当中使用
 2. 地图
-   参考官网的 `/map`的样式，通过 ClusterMap、Map 这 2 个地图分别展示了聚合效果、散点展示效果，且每个地图都通过 Geojson 来标记收发国家的“足迹”。
+   参考官网的 `/map`的样式，通过 ClusterMap、Map 这 2 个地图分别展示了聚合效果、散点展示效果，且每个地图都通过 Geojson 来标记收发国家的"足迹"。
 3. **信息汇总**：
 
    汇总以下模块的内容
@@ -35,7 +62,7 @@
 
      ![](./img/summary03-2.png)
 
-   - 明信片故事：读取人工填写的 `./temnplate/postcardStory`生成明信片故事的**词云**，并为每个已填写“故事”的明信片展示图片、内容
+   - 明信片故事：读取人工填写的 `./template/postcard_story.xlsx`生成明信片故事的**词云**，并为每个已填写"故事"的明信片展示图片、内容
 
      ![](./img/summary04-1.png)
 
@@ -47,9 +74,17 @@
 
      ![](./img/summary05.png)
 
+   - **各年详情**（新增）
+
+     信息汇总页面按年份拆分为独立的文件（`各年详情_2013.md` ~ `各年详情_2026.md`），解决单文件过大导致的 Netlify 构建内存问题，同时支持按年份浏览明信片故事。
+
+   - **年度词云**（新增）
+
+     为每年生成独立的中文和英文词云图片，更精准地展示每年的明信片内容特点。
+
    - 增量更新
 
-     抓取后的信息会保存到./template/data/db 数据库当中，如果以后有更新，只会抓取更新部分并存入到数据库，减少对 Postcrossing 的压力。
+     抓取后的信息会保存到 `./template/postcrossing.db` 数据库当中，如果以后有更新，只会抓取更新部分并存入到数据库，减少对 Postcrossing 的压力。
 
 # 环境要求
 
@@ -62,14 +97,15 @@ python 版本 >=3.11.2
 1. clone 本项目到本地
 2. 按需修改 scripts/config.toml
 
-```toml[settings]
-Cookie = "" # 正常情况下无需修改。通过scripts/login.py或startTask.py来自动赋值
+```toml
+[settings]
+Cookie = "" # 正常情况下无需修改。通过 scripts/login.py 或 start_task.py 来自动赋值
 story_pic_type = "webp"  # 存放明信片背面图片的格式
 
 [url]
 pic_driver_path = "https://raw.gitmirror.com/{{repo}}/main/gallery/picture" # 展示墙图片默认为Github仓库的文件直链。也可以修改为你自己图床的连接。如果是本地使用，需要改为`./gallery/picture`
 story_pic_link = "https://raw.gitmirror.com/{{repo}}/main/template/content" #存放明信片背面图片的路径。也可以修改为你自己图床的连接。如果是本地使用，需要改为./template/content/Postcrossing_map_generator/template/content"
-personal_page_link = "https://XXXX" # 信息汇总页用途，填写你的github page 路径，如“https://XXX/output/sent.html”，则取地址的前半截
+personal_page_link = "https://XXXX" # 信息汇总页用途，填写你的github page 路径，如"https://XXX/output/sent.html"，则取地址的前半截
 
 [notice]
 db_update = false # 系统默认值，无需手动修改
@@ -81,8 +117,8 @@ db_update = false # 系统默认值，无需手动修改
 - **删除./template 目录下的 data.db 文件**
 - **（可选）修改**：在./template/postcard_story.xlsx 中填入已收到明信片的文字、信息汇总\_template.md 可修改为你喜欢的文字描述）
 - **（可选）修改**：在 `./template/content/`目录下删除我的数据，然后拍照复制（建议扫描全能王自动切边+自动高清）已收到明信片的文字面图片到`./template/content/rawPic`目录下，可以自动转换为 webp 格式。并将图片名称命名为 ID 名称，如：`CN-XXXXXXX.webp`。
-  （本项目图片默认读取 webp 格式，如果需要修改为其他格式，需要修改./scripts/config.toml 文件中的“story_pic_type"的值，改为你需要的格式
-- **（可选）修改/删除**：在 `./template/信息汇总_template.md/`文件的“网址备份”内容，改为你自己生成的文件链接
+  （本项目图片默认读取 webp 格式，如果需要修改为其他格式，需要修改./scripts/config.toml 文件中的"story_pic_type"的值，改为你需要的格式
+- **（可选）修改/删除**：在 `./template/信息汇总_template.md/`文件的"网址备份"内容，改为你自己生成的文件链接
 
 4. 执行 `pip install -r requirements.txt安装依赖`
 5. 执行 `pip install openpyxl -i http://pypi.doubanio.com/simple/ --trusted-host pypi.doubanio.com` 安装 openpyxl （如果你需要填写/template/postcard_story.xlsx 当中的明信片背面文字内容，则需要安装）
@@ -93,19 +129,21 @@ db_update = false # 系统默认值，无需手动修改
 
 ```
 （1）一键脚本：
-scripts/startTask.py //本脚本已整合了所有需要运行的文件，运行后可一键生成项目所有文件
+scripts/start_task.py //本脚本已整合了所有需要运行的文件，运行后可一键生成项目所有文件
 ```
 
-执行`python scripts/startTask.py "postcrossing账号" "postcrossing密码" "你想要在vuepress中展示的昵称" "仓库地址" "小牛翻译apikey"`
+执行 `python scripts/start_task.py "postcrossing账号" "postcrossing密码" "你想要在vuepress中展示的昵称" "仓库地址" "小牛翻译apikey"`
 
 ```
 （2）各步骤脚本
-1) scripts/login.py  //登陆账号获取cookie，可单独使用（配合Github Action定时刷新Cookie），也可以整合到startTask.py中使用
-2) scripts/multiDownload.py //下载/更新内容到数据库
-3) scripts/createMap.py  //在根目录生成cluster_map.html、map.html、Location.html文件
-4) scripts/createGallery.py  //在`./gallery`生成4个不同类型的展示墙、已下载的图片
-5) scripts/createPersonalPage.py  //在`./gallery`生成“信息汇总”页面(还包含其他结果文件)
-6) scripts/mailTrack.py  //在`./template/data.db`数据库中插入已抓取到的邮件回复信息
+1) scripts/login.py  //登陆账号获取 cookie，可单独使用（配合 Github Action 定时刷新 Cookie），也可以整合到 start_task.py 中使用
+2) scripts/multi_download.py //下载/更新内容到数据库
+3) scripts/create_map.py  //在根目录生成 cluster_map.html、map.html、location_map.html 文件
+4) scripts/create_gallery.py  //在`./gallery`生成4个不同类型的展示墙、已下载的图片
+5) scripts/create_personal_page.py  //在`./gallery`生成"信息汇总"页面和各年详情页面(还包含其他结果文件)
+6) scripts/mail_track.py  //在`./template/postcrossing.db`数据库中插入已抓取到的邮件回复信息
+7) scripts/ai_tool.py  //使用 Gemini AI 识别已上传的明信片背面文字内容
+8) scripts/postcrossing_recap.py  //生成 Postcrossing 年度回顾 HTML 页面
 ```
 
 如果你需要人工进行数据获取/单独调试某模块内容，可参考以下执行顺序：
@@ -136,9 +174,9 @@ scripts/startTask.py //本脚本已整合了所有需要运行的文件，运行
 
    - 参数说明：
 
-     不同组的配置用英文逗号隔开，组内的不同参数则通过‘//’分隔，QQ 邮箱、谷歌邮箱的 host 可以参考以下内容，其他邮箱的 host 需要自行查询和调试。
+     不同组的配置用英文逗号隔开，组内的不同参数则通过'//'分隔，QQ 邮箱、谷歌邮箱的 host 可以参考以下内容，其他邮箱的 host 需要自行查询和调试。
 
-     邮件对应的目录一般默认为“**INBOX**"，如果之前你已经将邮件挪到其他文件夹，则需要修改以下./scripts/mailTrack.py 的内容，将注释去掉，然后使用邮箱参数 `"imap.qq.com//254XXXX40@qq.com//hyiXXXXccaaa//INBOX`先查询自己账号的邮箱有哪些文件夹，然后在运行参数中修改正确为的文件夹：`"imap.qq.com//254XXXX40@qq.com//hyiXXXXccaaa//其他文件夹/postcrossing`
+     邮件对应的目录一般默认为"**INBOX**"，如果之前你已经将邮件挪到其他文件夹，则需要修改以下./scripts/mailTrack.py 的内容，将注释去掉，然后使用邮箱参数 `"imap.qq.com//254XXXX40@qq.com//hyiXXXXccaaa//INBOX`先查询自己账号的邮箱有哪些文件夹，然后在运行参数中修改正确为的文件夹：`"imap.qq.com//254XXXX40@qq.com//hyiXXXXccaaa//其他文件夹/postcrossing`
 
    ```
        with MailBox(host).login(user, passwd) as mailbox:
@@ -186,7 +224,7 @@ scripts/startTask.py //本脚本已整合了所有需要运行的文件，运行
 
 如果你想通过 Github Action 来实现定时获取数据，可进行以下步骤
 
-1. fork 本项目到你自己的仓库，然后修改 fork 仓库内的 `.github/workflows/sync.yml`和 `refreshCookie.yml`文件，以下内容改为你自己的 github 信息。
+1. fork 本项目到你自己的仓库，然后修改 fork 仓库内的 `.github/workflows/sync_schedule.yml`、`.github/workflows/sync_manual.yml` 和 `.github/workflows/refresh_cookie.yml` 文件，以下内容改为你自己的 github 信息。
 
 ```
 env:
@@ -214,7 +252,7 @@ on:
 
 - account：你的 postcrossing 账号名称
 - password：你的 postcrossing 账号密码
-- nickname：你的 vuepress 的 fronttage 的 category:- XXX 对应的名称
+- nickname：你的 vuepress 的 frontmatter 的 category: XXX 对应的名称
 - parm：邮件参数，如："imap.qq.com//254XXXX40@qq.com//hyiXXXXccaaa//其他文件夹/Postcrossing,imap.gmail.com//fsXXXX@gmail.com//ltjorXXXXmore//postcrossing" （说明详见步骤一）
 - apikey：小牛翻译的 api
 
@@ -224,12 +262,12 @@ on:
 
     注意：
 
-    如果不需要登陆账号搜集回复内容，请将`.github/workflows/sync.yml`中的以下内容注释掉，或者删除。
+    如果不需要登陆账号搜集回复内容，请将 `.github/workflows/sync_schedule.yml` 中的以下内容注释掉，或者删除。
 
-```
-- name: 更新邮件回复
+```yaml
+      - name: 更新邮件回复
         run: |
-          python scripts/mailTrack.py ${{ secrets.PARMS }} ${{ secrets.APIKEY }}
+          uv run python scripts/mail_track.py ${{ secrets.PARMS }} ${{ secrets.GEMINI_APIKEY }}
 ```
 
 4. 将修改后的内容上传/push 到 Github 当中
@@ -285,7 +323,7 @@ https://raw.gitmirror.com/arthurfsy2/Postcrossing_map_generator/main/output/mont
 
 上述 2 种方法获取的 json 文件为直链，可以通过 python 或 javascript 直接 http 的 get 请求，直接获取到数据。
 
-> 本项目的“信息汇总.md"关于 echarts 图表部分，则用到了几个 json 文件的 CDN 链接。
+> 本项目的"信息汇总.md"关于 echarts 图表部分，则用到了几个 json 文件的 CDN 链接。
 
 ## 3. 自动将`.md` 同步到 vuepress blog 仓库
 
@@ -295,64 +333,98 @@ https://raw.gitmirror.com/arthurfsy2/Postcrossing_map_generator/main/output/mont
 
 ### 步骤：
 
-1、参考**仓库 A**的 .github/workflows/sync.yml
-[sync.yml](https://github.com/arthurfsy2/Postcrossing_map_generator/blob/main/.github/workflows/sync.yml)
+1、参考**仓库 A**的 `.github/workflows/sync_schedule.yml` 或 `.github/workflows/sync_manual.yml`
 
-以下代码为重要部分，需要修改为你自己的信息（NAME、EMAIL 如果在上述步骤设置过的话可以不需要再设置了）。
+以下代码为重要部分，需要修改为你自己的信息：
 
-```
+```yaml
 env:
-  blog_path: "./src/Arthur/postcrossing"  //修改为你的blog仓库需要存放md文件的路径
-  blog_repo: "arthurfsy2/arthurfsy2.github.io" //修改为你的blog仓库名称
-  PUSH_TO_GITHUB: true  //初始默认值，不需要改变
-
+  blog_path: "./src/Arthur/postcrossing"  # 修改为你的 blog 仓库需要存放 md 文件的路径
+  blog_repo: "arthurfsy2/arthurfsy2.github.io" # 修改为你的 blog 仓库名称
+  PUSH_TO_GITHUB: true  # 初始默认值，不需要改变
 ```
 
 2. 在 repo Settings > Security > Secrets > secrets and variables > Actions > New repository secret > 增加以下变量:`PERSONAL_GITHUB_TOKEN`,这个参数的值你github生成的个人[Personal access tokens (classic)](https://github.com/settings/tokens)
 
-```yml
-# 处理博客仓库同步
-  - name: Checkout 博客仓库
-    uses: actions/checkout@v3
-    with:
-      repository: ${{ env.blog_repo }}
-      path: blog-repo
-      token: ${{ secrets.PERSONAL_GITHUB_TOKEN }} # 新增的access token
-      fetch-depth: 1
-      ref: main
+```yaml
+      # 处理博客仓库同步
+      - name: Checkout 博客仓库
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.blog_repo }}
+          path: blog-repo
+          token: ${{ secrets.PERSONAL_GITHUB_TOKEN }} # 新增的 access token
+          fetch-depth: 1
+          ref: main
 
-  - name: 复制.md文件到博客仓库
-    run: |
-      # 创建目标目录
-      mkdir -p "blog-repo/${{ env.blog_path }}"
-      # 只复制gallery目录下的.md文件
-      cp ./gallery/*.md "blog-repo/${{ env.blog_path }}/"
-      echo "Markdown文件已复制到博客仓库"
+      - name: 复制.md 文件到博客仓库
+        run: |
+          # 创建目标目录
+          mkdir -p "blog-repo/${{ env.blog_path }}"
+          mkdir -p "blog-repo/${{ env.blog_path }}/各年详情"
+          echo "📁 复制以下 Markdown 文件到博客仓库："
+          # 复制 gallery 目录下的.md 文件
+          for file in ./gallery/*.md; do
+            if [ -f "$file" ]; then
+              cp "$file" "blog-repo/${{ env.blog_path }}/"
+              echo "  ✅ $(basename "$file")"
+            fi
+          done
+          # 复制 gallery/各年详情 目录下的.md 文件
+          for file in ./gallery/各年详情/*.md; do
+            if [ -f "$file" ]; then
+              cp "$file" "blog-repo/${{ env.blog_path }}/各年详情/"
+              echo "  ✅ 各年详情/$(basename "$file")"
+            fi
+          done
+          echo "📋 Markdown 文件复制完成"
 
-  - name: 检查是否有文件变更
-    id: check_changes
-    run: |
-      cd blog-repo
-      if git diff --quiet; then
-        echo "没有文件变更"
-        echo "has_changes=false" >> $GITHUB_OUTPUT
-      else
-        echo "检测到文件变更"
-        echo "has_changes=true" >> $GITHUB_OUTPUT
-      fi
+      - name: 检查是否有文件变更
+        id: check_changes
+        run: |
+          cd blog-repo
+          if git diff --quiet; then
+            echo "没有文件变更"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "检测到文件变更"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
 
-  - name: 提交并推送到博客仓库
-    if: steps.check_changes.outputs.has_changes == 'true'
-    run: |
-      cd blog-repo
-      git config --local user.email "${{ env.GITHUB_EMAIL }}"
-      git config --local user.name "${{ env.GITHUB_NAME }}"
-      git add .
-      git commit -m '自动同步postcrossing数据'
-      git push
+      - name: 提交并推送到博客仓库
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          cd blog-repo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m '自动同步 postcrossing 数据'
+          git push
 ```
 
-# 五. 其他说明
+# 五. 新增功能说明（2024-2025）
+
+## 1. 信息汇总页面按年份拆分
+
+为了解决单文件过大导致的 Netlify 构建内存问题，信息汇总页面已重构为：
+- **信息汇总.md**：索引页，包含基本信息、图片墙、地图展示、统计图表、年份导航
+- **各年详情_YYYY.md**：年度页面，包含当年的明信片故事和邮件回复
+
+## 2. 年度词云
+
+为每年生成独立的中文和英文词云图片：
+- `output/postcrossing_cn_YYYY.svg`：年度中文词云
+- `output/postcrossing_en_YYYY.svg`：年度英文词云
+
+## 3. Markdown 特殊字符自动转义
+
+自动处理明信片内容中的 Markdown 特殊符号（如行首的 `-`、`#`、`>` 等），防止内容被错误解析。
+
+## 4. AI 识别明信片内容
+
+使用 Gemini AI 自动识别已上传的明信片背面文字内容，支持多语言识别和翻译。
+
+# 六. 其他说明
 
 ## vercel
 
