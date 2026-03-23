@@ -19,3 +19,4 @@ __pycache__/
 # 临时文件
 *.bak
 *.tmp
+.workbuddy

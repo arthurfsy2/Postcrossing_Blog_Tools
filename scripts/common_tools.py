@@ -279,6 +279,13 @@ def read_db_table(db_path, table_name, filters=None):
     for item in data:
         item.pop("_sa_instance_state", None)
 
+    # 对 postcard_story 表的特殊字段进行 Markdown 转义处理
+    if table_name == "postcard_story":
+        for item in data:
+            for key in ["content_original", "content_cn", "comment_original", "comment_cn"]:
+                if item.get(key):
+                    item[key] = escape_markdown(item[key])
+
     session.close()
     return data
 
@@ -369,11 +376,43 @@ def pic_to_webp(input_dir, output_dir):
                 print(f"文件 {file_name} 转换失败: {str(e)}")
 
 
+def escape_markdown(text):
+    """转义 Markdown 特殊字符，避免内容被错误解析"""
+    if not text:
+        return text
+    
+    lines = text.split('\n')
+    escaped_lines = []
+    
+    for line in lines:
+        stripped = line.strip()
+        # 处理行首的列表符号（-、*、+）后面跟着空格的情况
+        # 在行首添加零宽空格（\u200b）来防止被解析为列表
+        if stripped.startswith('- ') or stripped.startswith('* ') or stripped.startswith('+ '):
+            # 在行首添加零宽空格
+            line = '\u200b' + line
+        # 处理行首的数字列表（如 "1. "、"2. "）
+        elif re.match(r'^\d+\.\s', stripped):
+            line = '\u200b' + line
+        # 处理行首的 # 符号（标题）
+        elif stripped.startswith('#'):
+            line = '\u200b' + line
+        # 处理行首的 > 符号（引用）
+        elif stripped.startswith('>'):
+            line = '\u200b' + line
+        
+        escaped_lines.append(line)
+    
+    return '\n'.join(escaped_lines)
+
+
 def remove_blank_lines(text):
+    """清理空行：移除所有空行，只保留非空行"""
     if text is None:
         return ""
-    text = re.sub(r"\n+", "\n", text)
-    return text
+    # 只保留非空行（与 clean_translation_markers 相同逻辑）
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    return '\n'.join(lines)
 
 
 if __name__ == "__main__":

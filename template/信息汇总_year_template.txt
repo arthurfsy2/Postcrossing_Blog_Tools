@@ -1,0 +1,125 @@
+---
+title: 各年详情 {{year}}
+icon: envelope-open-text
+date: {{year}}-12-31
+category:
+  - {{nick_name}}
+tag:
+  - Postcrossing
+order: {{10 + order}}
+---
+
+## 一.{{year}}年明信片故事（{{story_num}}）
+
+::::: tabs
+@tab 中文词云
+![](https://raw.githubusercontent.com/{{repo}}/main/output/postcrossing_cn_{{year}}.svg)
+@tab 英文词云
+![](https://raw.githubusercontent.com/{{repo}}/main/output/postcrossing_en_{{year}}.svg)
+:::::
+{% for year, year_data in story_list.items() %}{% for item in year_data %}
+[{{item.card_id}}](https://www.postcrossing.com/postcards/{{item.card_id}})
+
+> 来自 {% if item.user !='account closed' %}[{{item.user}}](https://www.postcrossing.com/user/{{item.user}}){%else%}*用户已注销*{%endif%} {{item.flag_emoji}}
+> 📤 [{{item.sent_country}}](https://www.bing.com/maps/?cp={{item.from_coor0}}~{{item.from_coor1}}&lvl=12.0&setlang=zh-Hans) {{item.sent_date_local}} (当地)
+> 📥 [{{item.received_country}}](https://www.bing.com/maps/?cp={{item.to_coor0}}~{{item.to_coor1}}&lvl=12.0&setlang=zh-Hans) {{item.received_date_local}} (当地)
+ 📏 {{item.distance}} | ⏱ {{item.travel_days}}
+
+:::::tabs
+@tab 图片{% if item.content_original %}
+<div class="image-preview">  <img src="{{pic_driver_path}}/{{item.pic_file_name}}" />  <img src="{{story_pic_link}}/{{item.card_id}}.{{story_pic_type}}" /></div>{%else%}
+暂无图片{%endif%}
+
+@tab 内容{% if item.content_original %}
+* 卡片文字
+
+> {{item.content_original}}
+
+* 翻译：
+
+> {{item.content_cn}}
+{%else%}
+暂无内容{%endif%}
+{% if item.comment_original %}
+@tab 额外消息
+* 消息原文
+
+> {{item.comment_original}}
+
+* 翻译：
+
+> {{item.comment_cn}}
+{%endif%}
+:::::
+
+---
+{% endfor %}
+{% endfor %}
+
+
+## 二.{{year}}年邮件回复（{{comment_num}}）
+
+{% for year, year_data in comment_list.items() %}
+{% for item in year_data %}
+[{{item.card_id}}](https://www.postcrossing.com/postcards/{{item.card_id}})
+
+> 寄往 [{{item.user}}](https://www.postcrossing.com/user/{{item.user}}) {{item.flag_emoji}}
+> 📤 [{{item.sent_country}}](https://www.bing.com/maps/?cp={{item.from_coor0}}~{{item.from_coor1}}&lvl=12.0&setlang=zh-Hans) {{item.sent_date_local}} (当地)
+> 📥 [{{item.received_country}}](https://www.bing.com/maps/?cp={{item.to_coor0}}~{{item.to_coor1}}&lvl=12.0&setlang=zh-Hans) {{item.received_date_local}} (当地)
+ 📏 {{item.distance}} | ⏱ {{item.travel_days}}
+
+:::::tabs{% if 'noPic.png' not in item.link %}
+@tab 图片
+![]({{pic_driver_path}}/{{item.pic_file_name}})
+{%endif%}
+@tab 回复
+* 回复原文
+
+> {{item.comment_original}}
+
+* 翻译：
+
+> {{item.comment_cn}}{% if item.content_original %}
+@tab 额外消息
+* 消息原文
+
+> {{item.content_original}}
+
+* 翻译：
+
+> {{item.content_cn}}
+{%endif%}
+
+:::::
+
+---
+{% endfor %}
+{% endfor %}
+
+<style>
+  .image-preview {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .image-preview > img {
+     box-sizing: border-box;
+     width: 50% !important;
+     padding: 9px;
+     border-radius: 16px;
+  }
+
+  @media (max-width: 719px){
+    .image-preview > img {
+      width: 50% !important;
+    }
+  }
+
+  @media (max-width: 419px){
+    .image-preview > img {
+      width: 100% !important;
+    }
+  }
+</style>

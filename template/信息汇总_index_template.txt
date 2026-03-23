@@ -1,0 +1,350 @@
+---
+title: 信息汇总
+icon: envelope-open-text
+date: 2023-10-08
+category:
+  - {{nick_name}}
+tag:
+  - Postcrossing
+order: 1
+---
+
+:::::tabs
+@tab 基本信息
+
+<iframe 
+src="{{personal_page_link}}/output/register_info.html" 
+frameborder=0
+height=350
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+@tab 关于我
+![](https://s3.amazonaws.com/static2.postcrossing.com/avatars/140x140/{{user_summary.logo}}.jpg)
+
+:::::info 个人简介
+{{user_summary.about}} 
+
+
+@tab 我的位置
+
+<iframe 
+src="{{personal_page_link}}/location_map.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+:::::
+
+[我的 Postcrossing 主页](https://www.postcrossing.com/user/{{account}})
+
+## 一.图片墙
+
+{{title_final}}
+
+::::: tabs
+@tab 发送列表
+
+<iframe 
+src="{{personal_page_link}}/output/sent.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+@tab 接收列表
+
+<iframe 
+src="{{personal_page_link}}/output/received.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+@tab 还在漂泊的明信片
+
+<iframe 
+src="{{personal_page_link}}/output/traveling.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+:::::
+
+## 二.地图展示
+
+:::::tip 地图颜色
+紫色：收发均有的国家
+绿色：仅有收/仅有发的国家
+灰色：收发均无的国家
+:::::
+
+:::::tabs
+@tab Map
+
+### 个人收发 Map
+
+网址：{{personal_page_link}}/map.html
+
+<iframe 
+src="{{personal_page_link}}/map.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+@tab ClusterMap
+
+### 个人收发 ClusterMap
+
+网址：{{personal_page_link}}/cluster_map.html
+
+<iframe 
+src="{{personal_page_link}}/cluster_map.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+@tab 网址备份
+
+### 个人收发 Map、ClusterMap (Github Page)
+
+网址：https://arthurfsy2.github.io/Postcrossing_map_generator/map.html
+网址：https://arthurfsy2.github.io/Postcrossing_map_generator/cluster_map.html
+:::::
+
+## 三.统计
+
+### 收发记录（年度）
+
+:::::echarts
+
+```js
+const data = await fetch(
+  "https://raw.githubusercontent.com/{{repo}}/main/output/calendar.json"
+).then((res) => res.json());
+
+const date = new Date();
+const year = date.getFullYear().toString().padStart(4, "0");
+
+const option = {
+  tooltip: {},
+  visualMap: {
+    show: false,
+    min: 1,
+    max: 10,
+    inRange: {
+      color: ["#7bc96f", "#239a3b", "#196127", "#196127"],
+    },
+  },
+  calendar: [
+    {%for year  in calendar_list %}{
+        top: {{(loop.index-1)*150}},
+        cellSize: ["auto", "15"],
+        range: {{year}},
+        itemStyle: {
+            color: '#ccc',
+            borderWidth: 3,
+            borderColor: '#fff'
+        },
+        splitLine: true,
+        yearLabel: {
+            show: true
+        },
+        dayLabel: {
+            firstDay: 1,
+        }
+    },
+    {%endfor%}],
+  series: [
+    {%for year  in calendar_list %}{
+        type: "heatmap",
+        coordinateSystem: "calendar",
+        calendarIndex: {{loop.index-1}},
+        data: data
+        },
+    {%endfor%}],
+};
+const height = {{(calendar_list | length)*150}};
+```
+
+:::::
+
+### 收发记录（月度）
+
+:::::echarts
+
+```js
+const data = await fetch(
+  "https://raw.githubusercontent.com/{{repo}}/main/output/month.json"
+).then((res) => res.json());
+
+var date = data.map(function (item) {
+  return item.date;
+});
+
+var sent = data.map(function (item) {
+  return item.sent;
+});
+
+var sentSum = sent.reduce(function (acc, curr) {
+  return acc + curr;
+}, 0);
+
+var received = data.map(function (item) {
+  return item.received;
+});
+
+var receivedSum = received.reduce(function (acc, curr) {
+  return acc + curr;
+}, 0);
+
+sentName = sentSum + "张已寄出";
+receivedName = receivedSum + "张已收到";
+
+const option = {
+  title: {
+    text: "",
+    left: "center",
+  },
+  legend: {
+    data: [sentName, receivedName],
+  },
+  tooltip: {
+    trigger: "axis",
+  },
+  xAxis: {
+    type: "category",
+    data: date,
+  },
+  yAxis: {
+    type: "value",
+  },
+  dataZoom: [
+    {
+      start: 0,
+    },
+    {
+      type: "inside",
+    },
+  ],
+  series: [
+    {
+      name: sentName,
+      data: sent,
+      type: "line",
+      smooth: true,
+    },
+    {
+      name: receivedName,
+      data: received,
+      type: "line",
+      smooth: true,
+    },
+  ],
+};
+```
+
+:::::
+
+### 数据统计
+
+:::::tabs
+@tab 国家分布
+
+::::: echarts
+
+```js
+const data = await fetch(
+  "https://raw.githubusercontent.com/{{repo}}/main/output/stats.json"
+).then((res) => res.json());
+
+const option = {
+  title: {
+    text: "",
+    subtext: "",
+    left: "center",
+  },
+  tooltip: {
+    trigger: "item",
+    formatter: "{b} : {c}",
+  },
+  xAxis: {
+    type: "category",
+    data: data.map(item => item.name), // 假设数据项有name属性
+  },
+  yAxis: {
+    type: "value",
+  },
+  dataZoom: [{end:60}],
+  series: [
+    {
+      name: "",
+      type: "bar", // 修改为柱状图
+      data: data.map(item => item.value), // 假设数据项有value属性
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: "rgba(0, 0, 0, 0.5)",
+        },
+      },
+      label: {
+        show: true,
+        position: "top",
+      },
+    },
+  ],
+}
+;
+```
+
+@tab 各国运输时效
+
+<iframe 
+src="{{personal_page_link}}/output/country_stats.html" 
+frameborder=0
+height=500
+width=100%
+seamless=seamless
+scrolling=auto
+></iframe>
+
+:::::
+
+## 四.明信片故事与回复（按年份查看）
+
+:::: tip 提示
+点击下方年份链接查看该年份的所有明信片故事和回复内容
+::::
+
+### 词云统计
+
+::::: tabs
+@tab 中文词云
+![](https://raw.githubusercontent.com/{{repo}}/main/output/postcrossing_cn.svg)
+@tab 英文词云
+![](https://raw.githubusercontent.com/{{repo}}/main/output/postcrossing_en.svg)
+:::::
+
+### 年份导航
+
+{% for year in year_list %}
+- [📬 {{ year }}年：【明信片故事{{ year_stats[year].story_count }}】 | 【邮件回复：{{ year_stats[year].comment_count }}】](/{{nick_name}}/postcrossing/各年详情/各年详情_{{year}})
+{% endfor %}
