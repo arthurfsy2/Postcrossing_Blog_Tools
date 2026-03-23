@@ -176,12 +176,16 @@ jobs:
           echo "🔍 博客仓库目标目录内容:"
           ls -la "blog-repo/${{ env.blog_path }}/" || echo "  ⚠️ 无法列出目标目录"
           ls -la "blog-repo/${{ env.blog_path }}/各年详情/" || echo "  ⚠️ 无法列出各年详情目标目录"
+          
+          # 将新复制的文件添加到 git
+          cd blog-repo
+          git add .
 
       - name: 检查是否有文件变更
         id: check_changes
         run: |
           cd blog-repo
-          if git diff --quiet; then
+          if git diff --cached --quiet; then
             echo "没有文件变更"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
