@@ -346,5 +346,5 @@ scrolling=auto
 ### 年份导航
 
 {% for year in year_list %}
-- [📬 {{ year }}年：【明信片故事{{ year_stats[year].story_count }}】 | 【邮件回复：{{ year_stats[year].comment_count }}】](/{{nick_name}}/postcrossing/各年详情/各年详情_{{year}})
+- [📬 {{ year }}年：【明信片故事{{ year_stats[year].story_count }}】 | 【邮件回复：{{ year_stats[year].comment_count }}】](/{{nick_name|lower}}/postcrossing/各年详情/各年详情_{{year}})
 {% endfor %}
