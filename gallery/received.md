@@ -1729,7 +1729,7 @@ const option = {
 ![](https://cdn.jsdelivr.net/gh/arthurfsy2/Postcrossing_Blog_Tools@main/gallery/picture/3fv8lw8qch3npecpsa4h7w65da93kv2n.jpg)
 
 [FI-4563418](https://www.postcrossing.com/postcards/FI-4563418) 
->来自 [Emmietta](https://www.postcrossing.com/user/Emmietta) 🇫🇮
+>来自 ***该用户已关闭*** 🇫🇮
 > 📤 [Finland](https://www.bing.com/maps/?cp=61.49911~23.78712&lvl=12.0&setlang=zh-Hans) 2024/02/09 21:20 (当地)
 > 📥 [China](https://www.bing.com/maps/?cp=22.56004~114.23477&lvl=12.0&setlang=zh-Hans) 2024/03/18 10:20 (当地)
  📏 7,839 | ⏱ 37
